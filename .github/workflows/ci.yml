@@ -1,0 +1,21 @@
+name: Test My Custom Action
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run my custom action
+        id: hello
+        uses: ./.github/actions/hello
+        with:
+          username: Trang
+
+      - name: Print action output
+        run: echo "${{ steps.hello.outputs.greeting }}"
